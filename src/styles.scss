@@ -8,7 +8,11 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-@import "./styles/tailwind";
+@import "./styles/reset";
+
+html {
+  font-family: "Roboto", sans-serif;
+}
 
 // Define the theme object.
 $simple-theme: mat.define-theme(

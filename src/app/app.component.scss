@@ -1,44 +1,101 @@
+@import "../styles/layout-variables";
+
+@mixin footer-margin($margin) {
+  margin: auto $margin $margin $margin;
+}
+
+@mixin margin-x($margin) {
+  margin-left: $margin;
+  margin-right: $margin;
+}
+
 .layout {
   height: 100vh;
   height: 100dvh;
 
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
   grid-template-areas:
-    "header"
-    "main"
-    "footer";
-
-  background-color: rgb(122, 54, 161);
+    "header header"
+    "side-bar content";
 }
 
-header {
+app-header {
   grid-area: header;
-  background-color: rgb(206, 101, 101);
+  background-color: rgb(101, 101, 177);
+}
+
+.side-bar {
+  grid-area: side-bar;
+  overflow-y: auto;
+  background-color: rgb(223, 170, 224);
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: start;
+  gap: 3rem;
+
+  & > app-navigation {
+    @include margin-x(1rem);
+    margin-top: 1rem;
+  }
+
+  & > app-footer {
+    @include footer-margin(1rem);
+
+    background-color: rgb(29, 48, 48);
+  }
+}
+
+.content {
+  grid-area: content;
+  overflow: auto;
+  background-color: rgb(161, 228, 116);
+
+  justify-self: center;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: start;
+  justify-content: center;
 }
 
 main {
-  grid-area: main;
-  overflow-y: auto;
-  background-color: azure;
+  background-color: rgb(65, 125, 204);
+
+  max-width: 75rem;
+  width: 100%;
+
+  @include margin-x(1rem);
+  margin-top: 1rem;
+  margin-bottom: 7rem;
 }
 
-.layout-main-footer {
-  display: none;
+@media (width <= $sm) {
+  .side-bar {
+    display: none;
+  }
 }
 
-.layout-footer {
-  grid-area: footer;
-  display: inherit;
-}
-
-@media (max-width: 920px) {
-  .layout-main-footer {
-    display: inherit;
+@media (width > $md) {
+  main {
+    @include margin-x(1.5rem);
+    margin-top: 1.5rem;
   }
 
-  .layout-footer {
-    display: none;
+  .side-bar {
+    & > app-navigation {
+      @include margin-x(1.5rem);
+      margin-top: 1.5rem;
+    }
+
+    & > app-footer {
+      @include footer-margin(1.5rem);
+    }
   }
 }
