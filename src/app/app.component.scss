@@ -1,0 +1,44 @@
+.layout {
+  height: 100vh;
+  height: 100dvh;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+
+  background-color: rgb(122, 54, 161);
+}
+
+header {
+  grid-area: header;
+  background-color: rgb(206, 101, 101);
+}
+
+main {
+  grid-area: main;
+  overflow-y: auto;
+  background-color: azure;
+}
+
+.layout-main-footer {
+  display: none;
+}
+
+.layout-footer {
+  grid-area: footer;
+  display: inherit;
+}
+
+@media (max-width: 920px) {
+  .layout-main-footer {
+    display: inherit;
+  }
+
+  .layout-footer {
+    display: none;
+  }
+}

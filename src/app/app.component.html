@@ -1,0 +1,35 @@
+<div class="layout">
+
+  <header>
+    Header
+  </header>
+
+  <main>
+
+    <mat-sidenav-container [hasBackdrop]="false">
+      <mat-sidenav #sidenav mode="push" [(opened)]="opened" (opened)="events.push('open!')"
+        (closed)="events.push('close!')">
+        Sidenav content
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+
+
+        <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p>
+        <p><button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button></p>
+        <p>Events:</p>
+        <div class="example-events">
+          @for (e of events; track e) {
+          <div>{{e}}</div>
+          }
+        </div>
+
+        <app-ui-demo></app-ui-demo>
+        <app-footer class="layout-main-footer"></app-footer>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+
+  </main>
+
+  <app-footer class="layout-footer"></app-footer>
+</div>
